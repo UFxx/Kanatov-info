@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/8a2fbc0c4d.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="/assets/img/Favicon.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;700&family=Source+Code+Pro:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=panchang@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/achievements.css">
+    <link rel="stylesheet" href="assets/css/achievements-query.css">
+    <script src="webjars/jquery/3.6.3/jquery.js"></script>
+    <title>Мои достижения</title>
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-logo">
+                <h1>Kanatov <span>Info</span></h1>
+            </div>
+            <div class="header-menu">
+                <div class="header-menu-icon">
+                    <ul class="header-menu-list">
+                        <li class="header-menu-list__item"><a href="/">Главная</a></li>
+                        <li class="header-menu-list__item"><a href="/tasks.html">Задания</a></li>
+                        <li class="header-menu-list__item active"><a href="/achievements.html">Мои достижения</a></li>
+                        <!-- <li class="header-menu-list__item"><a href="/login" sec:authorize="!isAuthenticated()">Войти</a></li> -->
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <main class="main">
+            <div class="main-content">
+                <div class="main-content-photo-left">
+                    <img src="/assets/img/photo.png" alt="photo">
+                </div>
+                <p class="main-content-text-right">На этой странице расписаны все мои достижения. Подробнее с ними вы можете ознакомиться нажав на достижение, которое вам интересно.</p>
+            </div>
+            <div class="arrow-down">
+                <i class="fas fa-arrow-down"></i>
+            </div>
+            <div class="achievements-list">
+                <div class="refresher-courses">
+                    <div>
+                        <h2>Курсы повышения квалификации</h2>
+                    </div>
+                    <div class="achievement-content">
+                        <ul class="achievement-list" id="courses-list">
+                            <li th:each="course: ${courses}">
+                                <a href=""></a>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <div class="scientific-works">
+                        <div class="scientific-works">
+                            <h2>Научные работы</h2>
+                        </div>
+                        <div class="achievement-content">
+                            <ul class="achievement-list" id="sciences-list">
+                                <li th:each="sciene: ${sciences}">
+                                    <a th:href="@{/achievements/sciences/{uuid}.pdf(uuid=${sciene.uuid})}" th:text="${sciene.name.substring(0, sciene.name.length() - 4)}"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="refresher-courses">
+                    <div>
+                        <h2>Личные достижения</h2>
+                    </div>
+                    <div class="achievement-content">
+                        <ul class="achievement-list" id="achievements-list">
+                            <li th:each="achievement: ${achievements}">
+                                <a th:href="@{/achievements/achievements/{uuid}.pdf(uuid=${achievement.uuid})}" th:text="${achievement.name.substring(0, achievement.name.length() - 4)}"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="footer">
+            <div class="footer-content">
+                <h1 class="footer-contact-me">Связь со мной</h1>
+                <p class="footer-contact-phone">Alan.kanatov@mail.ru</p>
+                <p class="footer-contact-mail">+7 (989) 130-51-49</p>
+            </div>
+        </footer>
+    </div>
+    <script src="/assets/js/achievement.js"></script>
+</body>
+
+</html>
